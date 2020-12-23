@@ -7,3 +7,5 @@ const adminSchema = new Schema({
   hidden: Boolean,
 });
 module.exports =admin= mongoose.model("admin", adminSchema);
+
+// this is admin route 
