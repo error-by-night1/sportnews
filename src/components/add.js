@@ -31,7 +31,7 @@ const Add = () => {
         "make sure you havent left anything empty and type must be either news or article"
       );
     } else {
-      await axios.post("https://nameless-crag-56133.herokuapp.com/ /add", {
+      await axios.post("http://localhost:8080/add", {
         title,
         body,
         imgurl,
