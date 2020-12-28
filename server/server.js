@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const { Schema } = mongoose;
 var bcrypt = require("bcryptjs");
 //--------------------------------------------------
+//Request headers
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
@@ -26,7 +27,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //-----------------------------------------------------
-//DB
+//data base connection
 const connectdb = async () => {
   try {
     await mongoose.connect(
@@ -40,6 +41,7 @@ const connectdb = async () => {
 };
 connectdb();
 //_______________________________________________________________________________________________________
+// data base schema's
 const articleSchema = new Schema({
   isarticle: Boolean,
   title: { type: String, required: true },
@@ -68,6 +70,7 @@ const usersSchema = new Schema({
   isadmin: Boolean,
 });
 /////////////////////////////////////////////////////////////////
+//data base models
 const article = mongoose.model("articles", articleSchema, "articles");
 // article.create({
 //   imgurl:
@@ -97,6 +100,7 @@ const user = mongoose.model("users", usersSchema, "users");
 
 //ROUTES
 //-----------------------------------------------------
+//route to add to the DB
 app.post("/add", (req, res) => {
   if (req.body.type === "article") {
     article.create({
@@ -117,6 +121,7 @@ app.post("/add", (req, res) => {
   }
 });
 //-----------------------------------------------------
+// rout to delet a poste
 app.post("/delete", async (req, res) => {
   if (req.body.is === false) {
     await news.find({ title: req.body.title }, async (err, data) => {
@@ -133,12 +138,14 @@ app.post("/delete", async (req, res) => {
   }
 });
 //-----------------------------------------------------
+//send the data to the front end
 app.get("/admindata", async (req, res) => {
   let arts = await article.find({});
   let neww = await news.find({});
   res.json({ articles: arts, news: neww });
 });
 //-----------------------------------------------------
+//to send data when the component did mount
 app.get("/home", async (req, res) => {
   let data = await news.find({});
   if (data) {
@@ -146,6 +153,7 @@ app.get("/home", async (req, res) => {
   }
 });
 //------------------------------------------------------
+//to find article
 app.get("/articles", async (req, res) => {
   let articles = await article.find({});
   if (articles) {
@@ -155,6 +163,7 @@ app.get("/articles", async (req, res) => {
 //------------------------------------------------------
 let token;
 //----------------------------------------------------
+//signup
 app.post("/signup", (req, res) => {
   try {
     user.create({
@@ -167,6 +176,7 @@ app.post("/signup", (req, res) => {
   }
 });
 //-----------------------------------------------------
+//login
 app.post("/login", async (req, res) => {
   /************************************/
   var rand = function () {
