@@ -21,9 +21,12 @@ const Admin = ({ add }) => {
   //______________________________________________________________________
   useEffect(async () => {
     try {
-      const resp = await axios.get("http://localhost:8080/admindata", {
-        headers: headers,
-      });
+      const resp = await axios.get(
+        "https://nameless-crag-56133.herokuapp.com/ /admindata",
+        {
+          headers: headers,
+        }
+      );
       let article = resp.data.articles;
       let news = resp.data.news;
       let final = [...article, ...news];

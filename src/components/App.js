@@ -33,9 +33,12 @@ const App = () => {
   //______________________________________________________________________
   const article = async () => {
     try {
-      const resp = await axios.get("http://localhost:8080/articles", {
-        headers: headers,
-      });
+      const resp = await axios.get(
+        "https://nameless-crag-56133.herokuapp.com/ /articles",
+        {
+          headers: headers,
+        }
+      );
       if (resp.data) {
         setview("articles");
         setstate(resp.data);
@@ -55,9 +58,12 @@ const App = () => {
   const filter = async (word) => {
     if (!word) {
       try {
-        const resp = await axios.get("http://localhost:8080/home", {
-          headers: headers,
-        });
+        const resp = await axios.get(
+          "https://nameless-crag-56133.herokuapp.com/ /home",
+          {
+            headers: headers,
+          }
+        );
         setstate(resp.data);
       } catch (err) {
         // Handle Error Here
@@ -73,16 +79,24 @@ const App = () => {
 
   //______________________________________________________________________
   const signup = async (creds) => {
-    await axios.post("http://localhost:8080/signup", creds, {
-      headers: headers,
-    });
+    await axios.post(
+      "https://nameless-crag-56133.herokuapp.com/ /signup",
+      creds,
+      {
+        headers: headers,
+      }
+    );
   };
   //________________________________________________________________________
   const login = async (creds) => {
     try {
-      const resp = await axios.post("http://localhost:8080/login", creds, {
-        headers: headers,
-      });
+      const resp = await axios.post(
+        "https://nameless-crag-56133.herokuapp.com/ /login",
+        creds,
+        {
+          headers: headers,
+        }
+      );
       if (resp.data.token) {
         if (resp.data.isadmin) {
           Cookies.set("ad", true);
@@ -100,9 +114,12 @@ const App = () => {
   //_______________________________________________________________________
   const news = async () => {
     try {
-      const resp = await axios.get("http://localhost:8080/home", {
-        headers: headers,
-      });
+      const resp = await axios.get(
+        "https://nameless-crag-56133.herokuapp.com/ /home",
+        {
+          headers: headers,
+        }
+      );
       if (resp.data) {
         setstate(resp.data);
         setview("news");
@@ -203,9 +220,12 @@ const App = () => {
       setcookie(getcookie(document.cookie));
     }
     try {
-      const resp = await axios.get("http://localhost:8080/home", {
-        headers: headers,
-      });
+      const resp = await axios.get(
+        "https://nameless-crag-56133.herokuapp.com/ /home",
+        {
+          headers: headers,
+        }
+      );
       setstate(resp.data);
     } catch (err) {
       // Handle Error Here

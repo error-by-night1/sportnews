@@ -16,7 +16,7 @@ const Acard = ({ title, body, author, imgurl, is }) => {
   //-----------------------------------
   const del = async (tit, is) => {
     try {
-      await axios.post("http://localhost:8080/delete", {
+      await axios.post("https://nameless-crag-56133.herokuapp.com/ /delete", {
         title: tit,
         is: is,
       });
